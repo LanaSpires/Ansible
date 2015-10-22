@@ -1,8 +1,0 @@
----
-- hosts: yum
-  remote_user: lana
-  become: yes
-  become_method: sudo
-  tasks:
-  - name: yum upgrade
-    yum: name=* state=latest 

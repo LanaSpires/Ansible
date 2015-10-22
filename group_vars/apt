@@ -1,5 +1,5 @@
 ---
-pkgmgr: aptitude
+pkgmgr: apt
 ansible: ansible
 apache: apache2
 ntp: ntp

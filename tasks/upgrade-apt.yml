@@ -1,0 +1,6 @@
+---
+- name: ensure aptitude is installed
+  apt: package=aptitude state=present
+- name: apt cache update and upgrade
+  apt: update_cache=yes upgrade=yes
+    

@@ -1,0 +1,3 @@
+---
+- name: dnf upgrade
+  dnf: name=* state=latest 

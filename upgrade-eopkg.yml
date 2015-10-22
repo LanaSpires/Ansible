@@ -7,4 +7,4 @@
   - name: eopkg update-repo 
     command: 'eopkg update-repo'
   - name: eopkg upgrade
-    command: 'eopkg upgrade'
+    command: 'eopkg upgrade -y'

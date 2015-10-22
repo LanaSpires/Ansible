@@ -1,12 +1,10 @@
 ---
 - hosts: ubupc1.ggc.local
   remote_user: lana
-  become: yes
-  become_method: sudo
   tasks:
   - name: test slack
     local_action:
       module: slack
-      token: T0C0DJ4H2/B0CUUPYTB/0Yro7kobYQ8xqIKaidv6MUcE
-      username: "lspires"
+      token: "{{ slack_token }}"
+      username: "{{ slack_user }}"
       msg: "Test posting from ansible playbook"

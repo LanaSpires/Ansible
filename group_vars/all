@@ -1,5 +1,3 @@
 ---
-dns_server1: 10.0.0.147 
+dns_server1: 10.0.0.147
 dns_server2: 10.0.0.200
-my_includes: /home/lana/ansible/includes
-

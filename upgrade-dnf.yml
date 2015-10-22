@@ -1,0 +1,8 @@
+---
+- hosts: dnf
+  remote_user: lana
+  become: yes
+  become_method: sudo
+  tasks:
+  - name: dnf upgrade
+    dnf: name=* state=latest 

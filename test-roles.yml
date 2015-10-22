@@ -1,0 +1,12 @@
+---
+- hosts: testing
+  remote_user: lana
+  become: yes
+  become_method: sudo
+  roles:
+  - common
+  tasks:
+    - debug: msg="{{ common_enabled }}"
+    - debug: msg="{{ pkgmgr }}"
+    - include: roles/common/tasks/test1.yml
+

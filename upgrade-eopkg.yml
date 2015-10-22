@@ -1,0 +1,10 @@
+---
+- hosts: eopkg
+  remote_user: lana
+  become: yes
+  become_method: sudo
+  tasks:
+  - name: eopkg update-repo 
+    command: 'eopkg update-repo'
+  - name: eopkg upgrade
+    command: 'eopkg upgrade'

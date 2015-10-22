@@ -1,0 +1,5 @@
+#!/bin/sh
+# Toggles the current windows maximized state.
+
+window_id=`xdotool getactivewindow`
+wmctrl -ir $window_id -b toggle,maximized_vert,maximized_horz

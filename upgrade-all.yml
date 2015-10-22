@@ -1,0 +1,28 @@
+---
+- hosts: yum
+  remote_user: lana
+  become: yes
+  become_method: sudo
+  tasks:
+  - name: yum upgrade
+    yum: name=* state=latest
+
+- hosts: apt
+  tasks:
+  - name: ensure aptitude installed
+    apt: package=aptitude state=present
+  - name: apt update and upgrade
+    apt: update_cache=yes upgrade=yes
+
+- hosts: dnf
+  tasks:
+  - name: dnf upgrade
+    dnf: name=* state=latest
+
+- hosts: eopkg
+  tasks:
+  - name: eopkg update-repo 
+    command: 'eopkg update-repo'
+  - name: eopkg upgrade
+    command: 'eopkg upgrade'
+

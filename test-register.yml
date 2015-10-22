@@ -1,0 +1,7 @@
+---
+- hosts: minty.ggc.local
+  tasks:
+  - command: cat /etc/issue.lana
+    register: banner 
+  - command: echo "banner contains the word minty"
+    when: banner.stdout.find('minty') != -1

@@ -1,0 +1,14 @@
+---
+- hosts: xfcehat.ggc.local
+  remote_user: lana
+  become: yes
+  become_method: sudo
+  tasks:
+  - name: Install Apache
+    dnf: pkg=httpd state=latest
+  - name: Install PHP
+    dnf: pkg=php state=latest
+  - name: set Apache to start on boot
+    service: name=httpd enabled=yes state=started
+  - name: update firewall
+    firewalld: port=80/tcp state=enabled zone=public immediate=true permanent=true

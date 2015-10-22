@@ -1,0 +1,19 @@
+---
+- hosts: solus.ggc.local
+  remote_user: lana
+  tasks:
+  - name: Apt test
+    command: echo "hello"
+    when: ansible_pkg_mgr == "apt"
+
+  - name: Yum test
+    command: echo "hello"
+    when: ansible_pkg_mgr == "yum"
+
+  - name: DNF test
+    command: echo "hello"
+    when: ansible_pkg_mgr == "dnf"
+
+  - name: eopkg test
+    command: echo "hello"
+    when: pkgmgr == "eopkg"

@@ -1,0 +1,7 @@
+---
+- hosts: apt
+  remote_user: lana
+  tasks:
+  - name: var test
+    debug: msg="{{ ansible_eth0.ipv4.address}}"
+

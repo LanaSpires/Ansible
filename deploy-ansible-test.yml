@@ -1,0 +1,12 @@
+---
+- hosts: kali.ggc.local
+  remote_user: lana
+  become: yes
+  become_method: sudo
+  tasks:
+  - name: install ansible dependencies
+    apt: pkg=ansible state=build-dep update_cache=yes
+  - name: install ansible
+    apt: pkg=ansible state=present
+  - name: copy config file
+    template: src=/etc/ansible/hosts dest=/etc/ansible/hosts

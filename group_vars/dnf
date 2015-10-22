@@ -1,0 +1,8 @@
+---
+pkgmgr: dnf
+ansible: ansible
+apache: httpd
+php: php
+ntp: ntp
+ntpdate: ntpdate
+

@@ -1,0 +1,9 @@
+---
+- hosts: autofs
+  remote_user: lana
+  become: yes
+  become_method: sudo
+  gather_facts: False
+  tasks:
+  - name: status report test
+    service: name=autofs state=started

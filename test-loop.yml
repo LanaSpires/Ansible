@@ -1,0 +1,10 @@
+---
+- hosts: ubupc1.ggc.local
+  remote_user: lana
+  tasks:
+  - name: wait for file
+    command: ~/bin/file-exists
+    register: result
+    until: result.stdout.find("file not there") != -1
+    retries: 6
+    delay: 10

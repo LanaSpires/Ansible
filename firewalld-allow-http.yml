@@ -1,0 +1,8 @@
+---
+- hosts: xfcehat.ggc.local
+  remote_user: lana
+  become: yes
+  become_method: sudo
+  tasks:
+  - name: update firewall
+    firewalld: port=80/tcp state=enabled zone=public immediate=true permanent=true

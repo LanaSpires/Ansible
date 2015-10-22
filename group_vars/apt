@@ -1,0 +1,7 @@
+---
+pkgmgr: aptitude
+ansible: ansible
+apache: apache2
+ntp: ntp
+ntpdate: ntpdate
+php: php5

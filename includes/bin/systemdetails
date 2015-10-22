@@ -1,0 +1,28 @@
+#!/bin/bash
+sudo ls > /dev/null
+echo 'System name:   ' `hostname`
+ifconfig eth2 | tr : \ | awk '/inet addr/{ print "IP address:    ",$3 }'
+echo 'External IP:   ' `wget -O- -q https://ipv4.wtfismyip.com/text`
+#echo 'Manufacturer:  ' `sudo dmidecode -s system-manufacturer`
+#echo 'Model:         ' `sudo dmidecode -s system-product-name`
+mfgname=`sudo dmidecode -t 2 | grep "Manufacturer" | awk '{print $2}'`
+prodname=`sudo dmidecode -t 2 | grep "Product Name" | awk '{printf "%s %s %s\n",$3,$4,$5}'`
+echo "System board:   $mfgname $prodname"
+df -h | grep  "/dev/sd" | awk '{ printf "Disk Usage:     %s of %s (%.2f%) - %s Free\t(%s at %s)\n", $3, $2, $5, $4, $1, $6 }'
+free -h | grep "Mem:" | awk '{ percent=$3/$2*100 } END { printf "Memory:         %s of %s (%.2f%) - %s Free\n",$3, $2, percent, $4 }'
+lsb_release -d -c 2> /dev/null
+echo 'Kernel version:' `uname -v`
+echo 'Kernel release:' `uname -r`
+echo
+echo BIOS Info
+sudo dmidecode -t bios | grep -E "Vendor|Version|Release Date"
+echo Chassis
+sudo dmidecode -t chassis | grep -E "Thermal State|Boot-up|Power Supply"
+echo Processor
+sudo dmidecode -t processor | grep -E "Version|Max Speed|Core Count"
+echo Video Card
+echo "       `lspci | grep VGA | awk  -F : '{print $3}'`"
+echo Memory
+sudo dmidecode -q -t 17 | awk '{ FS="\n";  RS="Memory Device\n" } { if (length($6) > 0) { print $6,$3,$8,$10,$11; } }' | sort | awk '{ if ($6 == "Installed") { printf "\t%s Empty\n",$2; } else { printf "\t%s %s%s - %s %s%s %s\n",$2,$4,$5,$12,$9, $10, $7;} }'
+sudo dmidecode -q -t 16 | grep -i -E "maximum capacity|number of devices" | awk -F : '{ printf "%s:%s\n",$1, $2 }'
+

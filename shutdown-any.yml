@@ -1,0 +1,9 @@
+---
+- hosts: "{{ hosts }}"
+  remote_user: lana
+  become: yes
+  become_method: sudo
+  tasks:
+  - name: shutdown
+    shell: "init 0"
+

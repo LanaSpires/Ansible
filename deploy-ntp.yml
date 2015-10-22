@@ -1,0 +1,35 @@
+---
+- hosts: testing
+  remote_user: lana
+  become: yes
+  become_method: sudo
+
+  tasks:
+  - name: print name of package manager
+    debug: msg={{ ansible_pkg_mgr }}
+  - name: dnf install of NTP
+    dnf: name=ntp state=latest
+    when: ansible_pkg_mgr == "dnf"
+  - name: ndf install of ntpdate
+    dnf: name=ntpdate state=latest
+    when: ansible_pkg_mgr == "dnf"
+  - name: yum install of NTP
+    yum: name=ntp state=latest
+    when: ansible_pkg_mgr == "yum"
+  - name: yum install of ntpdate
+    yum: name=ntpdate state=latest
+    when: ansible_pkg_mgr == "yum"
+  - name: start ntpd
+    service: name=ntpd state=started
+    when: ansible_os_family == "RedHat"
+
+  - name: apt install of NTP
+    apt: name=ntp state=latest
+    when: ansible_pkg_mgr == "apt"
+  - name: apt install of ntpdate
+    apt: name=ntpdate state=latest
+    when: ansible_pkg_mgr == "apt"
+  - name: start ntp
+    service: name=ntp state=started
+    when: ansible_os_family== "Debian"
+

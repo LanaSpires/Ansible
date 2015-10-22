@@ -1,0 +1,28 @@
+---
+- hosts: '{{ hosts }}'
+  remote_user: lana
+  become: yes
+  become_method: sudo
+  tasks:
+  - name: yum upgrade
+    yum: name=* state=latest
+    when: ansible_pkg_mgr == "yum"
+
+  - name: ensure aptitude installed
+    apt: package=aptitude state=present
+    when: ansible_pkg_mgr == "apt"
+  - name: apt update and upgrade
+    apt: update_cache=yes upgrade=yes
+    when: ansible_pkg_mgr == "apt"
+
+  - name: dnf upgrade
+    dnf: name=* state=latest
+    when: ansible_pkg_mgr == "dnf"
+
+  - name: eopkg update-repo 
+    command: 'eopkg update-repo'
+    when: pkgmgr == "eopkg"
+  - name: eopkg upgrade
+    command: 'eopkg upgrade'
+    when: pkgmgr == "eopkg"
+

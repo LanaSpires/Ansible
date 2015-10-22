@@ -1,0 +1,8 @@
+#!/bin/bash
+if [ -e ~/examples.desktop ]; then
+    echo "file exists"
+	exit 1
+else
+    echo "file not there"
+	exit 0
+fi

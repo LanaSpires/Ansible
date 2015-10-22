@@ -1,0 +1,8 @@
+---
+- hosts: kali.ggc.local
+  remote_user: lana
+  tasks:
+  - name: reboot
+    command: '/sbin/reboot'
+    become: yes
+    become_method: sudo
